@@ -21,10 +21,11 @@ module.exports = {
 
             imageOptimize(config);
 
-            config.plugin('copy').tap(([args]) => {
-                args[0].ignore.push('mock-data/**/*');
-                return [args];
-            });
+            config.plugins.has('copy') &&
+                config.plugin('copy').tap(([args]) => {
+                    args[0].ignore.push('mock-data/**/*');
+                    return [args];
+                });
         }
 
         svgSpriteConfig(config);
