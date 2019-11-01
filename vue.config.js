@@ -26,6 +26,8 @@ module.exports = {
                 return [args];
             });
         }
+
+        svgSpriteConfig(config);
     },
     configureWebpack: {
         resolve: {
@@ -46,11 +48,20 @@ module.exports = {
     transpileDependencies: []
 };
 
-function addStyleResource(rule) {
-    rule.use('style-resource')
-        .loader('style-resources-loader')
+function svgSpriteConfig(config) {
+    let svgDir = path.resolve(__dirname, './src/assets/svg-icons');
+
+    config.module.rule('svg').exclude.add(svgDir);
+
+    config.module
+        .rule('svg-sprite')
+        .test(/\.svg$/)
+        .include.add(svgDir)
+        .end()
+        .use('svg-sprite-loader')
+        .loader('svg-sprite-loader')
         .options({
-            patterns: [path.resolve(__dirname, './src/theme/index.scss')]
+            symbolId: '[name]'
         });
 }
 

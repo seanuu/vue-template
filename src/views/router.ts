@@ -6,7 +6,7 @@ import ModuleRoute from './module/module.route';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-    routes: [ModuleRoute('module')]
+    routes: [ModuleRoute('/module'), {path: '**', redirect: {name: ModuleRoute.defalutPath}}]
 });
 
 export default router;

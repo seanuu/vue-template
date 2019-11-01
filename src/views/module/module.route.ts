@@ -1,6 +1,6 @@
 import {Page1, Page2} from './index';
 
-export default function(path = 'module') {
+export default function Route(path = '/module') {
     return {
         path: path,
         component: () => import('./module.vue'),
@@ -18,3 +18,5 @@ export default function(path = 'module') {
         ]
     };
 }
+
+Route.defalutPath = 'page1';
