@@ -84,18 +84,17 @@ function imageOptimize(config) {
         .tap(options => ({
             mozjpeg: {
                 progressive: true,
-                quality: 70
+                quality: 65
             },
             optipng: {
                 enabled: true
             },
             pngquant: {
-                quality: [0.65, 0.85],
+                quality: [0.65, 0.9],
                 speed: 4
             },
             gifsicle: {
                 interlaced: false
-            },
-            bypassOnDebug: true
+            }
         }));
 }
