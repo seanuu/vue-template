@@ -1,4 +1,4 @@
-import './styles.scss';
+import './styles/styles.scss';
 import './plugins';
 import './polyfills';
 
