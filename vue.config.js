@@ -27,6 +27,7 @@ module.exports = {
                     return [args];
                 });
         }
+        svgOptimize(config);
 
         svgSpriteConfig(config);
     },
@@ -96,5 +97,49 @@ function imageOptimize(config) {
             gifsicle: {
                 interlaced: false
             }
+        }));
+}
+
+function svgOptimize(config) {
+    config.module
+        .rule('svg')
+        .use('svgo-loader')
+        .loader('svgo-loader')
+        .tap(options => ({
+            plugins: [
+                {cleanupAttrs: true},
+                {cleanupEnableBackground: true},
+                {cleanupIDs: true},
+                {cleanupListOfValues: true},
+                {cleanupNumericValues: true},
+                {collapseGroups: true},
+                {convertColors: true},
+                {convertPathData: true},
+                {convertShapeToPath: true},
+                {convertStyleToAttrs: true},
+                {convertTransform: true},
+                {mergePaths: true},
+                {removeComments: true},
+                {removeDesc: true},
+                {removeDimensions: true},
+                {removeDoctype: true},
+                {removeEditorsNSData: true},
+                {removeEmptyAttrs: true},
+                {removeEmptyContainers: true},
+                {removeEmptyText: true},
+                {removeHiddenElems: true},
+                {removeMetadata: true},
+                {removeNonInheritableGroupAttrs: true},
+                {removeRasterImages: true},
+                {removeTitle: true},
+                {removeUnknownsAndDefaults: true},
+                {removeUselessDefs: true},
+                {removeUnusedNS: true},
+                {removeUselessStrokeAndFill: true},
+                {removeXMLProcInst: true},
+                {removeStyleElement: true},
+                {removeUnknownsAndDefaults: true},
+                {sortAttrs: true}
+            ]
         }));
 }
